@@ -1,0 +1,66 @@
+<md-dialog class="send-order-auth">
+    <form ng-cloak name="sendOrderNoauthForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Отправка заказа</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancelOrder()">
+                    <md-icon md-font-icon aria-label="Close dialog">clear</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-padding">
+
+                <md-input-container class="md-block">
+                    <label>Имя</label>
+                    <input required type="text"   md-maxlength="50" name="myname" ng-model="myOrder.name" md-select-on-focus/>
+
+                    <div ng-messages="sendOrderNoauthForm.myname.$error">
+                        <div ng-message='required'>Имя - обязательное поле.</div>
+                        <div ng-message='md-maxlength'>Имя не должно быть длиннее 50 символов.</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" >
+                    <label>Телефон</label>
+                    <input required type="text" name="myphone" ng-model="myOrder.phone" ng-pattern="/^[+]7[0-9]{10}$/" />
+
+                    <div ng-messages="sendOrderNoauthForm.myphone.$error">
+                        <div ng-message='required'>Телефон - обязательное поле.</div>
+                        <div ng-message="pattern">Телефон по шаблону: +7##########</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" >
+                    <label>E-mail</label>
+                    <input required type="text" name="myemail" md-maxlength="50" ng-model="myOrder.email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" />
+                    <div ng-messages="sendOrderNoauthForm.myemail.$error">
+                        <div ng-message='required'>Email - обязательное поле.</div>
+                        <div ng-message='md-maxlength'>Email не должен бытьдлиннее 50 символов.</div>
+                        <div ng-message="pattern">Email должен выглядеть как email</div>
+
+                    </div>
+                </md-input-container>
+
+
+
+                <md-input-container class="md-block">
+                    <label>Комментарии</label>
+                    <textarea ng-model="myOrder.note" md-maxlength="150" rows="5"></textarea>
+                </md-input-container>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+
+            <span flex></span>
+            <md-button class="md-raised md-warn" ng-click="doNonAuthOrder()" ng-disabled="sendOrderNoauthForm.$invalid">
+                Отправить заказ
+            </md-button>
+
+        </md-dialog-actions>
+    </form>
+</md-dialog>

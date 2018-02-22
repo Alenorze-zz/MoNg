@@ -1,0 +1,23 @@
+<div ng-controller="MainMenuController">
+    <md-content class="main-menu" flex mn-fix-height="180">
+
+        <div class="menu-padding-left">         
+            <md-divider></md-divider>
+            <div ng-repeat="category in catalog">
+
+                <md-button class="menu-category" ng-click="clickCategory(category.id+1)">
+                    <div class="md-title" >{{category.name}}</div>
+                </md-button>
+
+                <md-list class="menu-products" ng-show="ifGroupCollapse(category.id+1)" style="height: {{category.templates.length * menuCategoryHeight}}px;">
+                    <md-list-item class="md-subhead" ng-repeat="item in category.templates" >
+                        <md-button ng-click="onClickMenu(item.id)"> <div class="menu-item-text">{{item.name}}</div></md-button>
+                    </md-list-item>
+                </md-list>
+
+                <md-divider></md-divider>
+            </div>  
+        </div>
+
+    </md-content>
+</div>

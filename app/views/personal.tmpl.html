@@ -1,0 +1,8 @@
+<div flex layout="row">
+    <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2" style="overflow: hidden">
+        <ng-include src="'views/personalMenu.inc.html'"></ng-include>
+    </md-sidenav>
+
+    <div flex layout="column" ui-view></div>
+
+</div>

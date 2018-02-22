@@ -1,0 +1,458 @@
+<div class="content-view">
+    <md-toolbar class="md-whiteframe-z2 content-toolbar">
+        <div class="md-toolbar-tools"> Параметры заказа Брошюры > Брошюра А4
+        <div flex></div>
+
+        <md-button hide-xs class="md-raised md-primary button-move-left" ng-click="calculate()">
+            <md-tooltip md-direction="left">
+               Рассчитать
+            </md-tooltip>
+          Рассчитать
+        </md-button>
+            <md-button hide-gt-xs class="quadro-icon-button md-raised md-primary" ng-click="calculate()">
+                <md-tooltip md-direction="left">
+                    Рассчитать
+                </md-tooltip>
+                <div class="fa fa-calculator"></div>
+            </md-button>
+
+
+        </div>
+    </md-toolbar>
+
+
+    <md-content id="orderContent" flex class="content-blocks" mn-fix-height="95">
+
+
+        <div class="md-whiteframe-2dp error-block md-padding" ng-show="showErrors">
+
+            <h3>Ошибки при оформлении заказа</h3>
+            <ul>
+                <div ng-messages="orderForm.orderAmount.$error">
+                    <div ng-message='required'>
+                        <li>Тираж - обязательное поле.</li>
+                    </div>
+                    <div ng-message='md-maxlength'>
+                        <li>Тираж должен быть не длиннее 8 символов.</li>
+                    </div>
+                    <div ng-message='pattern'>
+                        <li>Тираж должен содержать только цифры.</li>
+                    </div>
+                </div>
+
+                <div ng-messages="orderForm.orderUrgency.$error">
+                    <div ng-message='required'>
+                        <li>Срочность - обязательное поле.</li>
+                    </div>
+                </div>
+
+                <div ng-messages="orderForm.sourceMaterials.$error">
+                    <div ng-message='required'><li>Исходные материалы - обязательное поле.</li></div>
+                </div>
+
+
+                <div ng-messages="orderForm.coverFormat.$error">
+                    <div ng-message='required'><li>Формат обложки - обязательное поле.</li></div>
+                </div>
+
+                <div ng-messages="orderForm.beautifulness.$error">
+                    <div ng-message='md-maxlength'>Красочность блока не должна быть не длиннее 8 символов.</div>
+                    <div ng-message="pattern">Красочность должна состоять из двух цифр через "x" например 4x4</div>
+                </div>
+
+                <div ng-messages="orderForm.beautifulness1.$error">
+                    <div ng-message='md-maxlength'>Красочность обложки не должна быть не длиннее 8 символов.</div>
+                    <div ng-message="pattern">Красочность должна состоять из двух цифр через "x" например 4x4</div>
+                </div>
+
+
+                <div ng-messages="orderForm.beautifulness2.$error">
+                    <div ng-message='md-maxlength'><li>Количество полос блока не должна быть не длиннее 8 символов.</li></div>
+                </div>
+
+                <div ng-messages="orderForm.beautifulness3.$error">
+                    <div ng-message='md-maxlength'><li>Брошюра-блок не должна быть не длиннее 8 символов.</li></div>
+                </div>
+
+                <div ng-messages="orderForm.numSample.$error" ng-hide="showHints">
+                    <div ng-message="number"><li>В поле должен быть число</li></div>
+                </div>
+
+                <div ng-messages="orderForm.phoneSample.$error" ng-hide="showHints">
+                    <div ng-message="pattern"><li>Телефон по шаблону: (###)###-####</li></div>
+                </div>
+
+
+                <div ng-messages="orderForm.emailSample.$error" ng-hide="showHints">
+                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                        <li>Email должен быть длинной от 10 до 100 символов и выглядеть как email.</li>
+                    </div>
+                </div>
+
+
+                <div ng-messages="orderForm.autocomplete.$error">
+                    <div ng-message='pattern'><li>Пример формата должен соотвествовать шаблону 2323x3232</li></div>
+                </div>
+            </ul>
+        </div>
+
+
+        <div layout-gt-xs="row" layout-align="center center" ng-show="priceMustShow()" >
+            <h3 class="calculated-price">Стоимость заказа: 10 645 р.</h3>
+
+            <md-button class="md-raised md-primary md-button-toggle" ng-click="toggles.calculation = !toggles.calculation">
+                Подробнее
+                <span aria-hidden="true" class="md-toggle-icon">
+                    <md-icon ng-class="{toggled:toggles.calculation}">keyboard_arrow_down</md-icon>
+                </span>
+            </md-button>
+
+            <md-menu>
+                <md-button class="md-raised md-warn" ng-disabled="false" ng-click="isAuthorized()?makeOrderAuth($event):$mdMenu.open($event)">
+                    Заказать
+                </md-button>
+                <md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button ng-click="goState('login')">
+                           Войти в приложение
+                        </md-button>
+                    </md-menu-item>
+
+                    <md-menu-item ng-click="goState('signup')">
+                    <md-button>
+                        Зарегистрироваться
+                    </md-button>
+                    </md-menu-item>
+
+                    <md-menu-item>
+                    <md-button ng-click="makeOrderNoauth($event)">
+                      Заказать без регистрации
+                    </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+
+
+        </div>
+
+        <div class="md-whiteframe-2dp calculated-price-details" ng-show="toggles.calculation">
+
+            <md-list-item class="mn-button-toggle" ng-click="toggles.calculationBlock1 = !toggles.calculationBlock1">
+                <div  class="md-list-item-text">
+                    <h3>Изготовление  <span aria-hidden="true" class="md-toggle-icon">
+                    <md-icon ng-class="{toggled:toggles.calculationBlock1}">keyboard_arrow_down</md-icon>
+                </span></h3>
+                    </div>
+                <div class="md-secondary">6800.07 р.</div>
+            </md-list-item>
+
+            <div ng-show="toggles.calculationBlock1">
+                <md-divider></md-divider>
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text">
+                        <h3>Изголовление форм</h3>
+                        <p>
+                            Блок (Л+О), Обложка (Л)
+                        </p>
+                    </div>
+                    <div class="md-secondary">923.00 р.</div>
+                </md-list-item>
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text">
+                        <h3>Печать листовая</h3>
+                        <p>
+                            Блок (Л+О), Обложка (Л)
+                        </p>
+                    </div>
+                    <div class="md-secondary">923.00 р.</div>
+                </md-list-item>
+
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text">
+                        <h3>Изголовление форм</h3>
+                        <p>
+                            Блок (Л+О), Обложка (Л)
+                        </p>
+                    </div>
+                    <div class="md-secondary">923.00 р.</div>
+                </md-list-item>
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text">
+                        <h3>Печать листовая</h3>
+                        <p>
+                            Блок (Л+О), Обложка (Л)
+                        </p>
+                    </div>
+                    <div class="md-secondary">923.00 р.</div>
+                </md-list-item>
+
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text">
+                        <h3>Изголовление форм</h3>
+                        <p>
+                            Блок (Л+О), Обложка (Л)
+                        </p>
+                    </div>
+                    <div class="md-secondary">923.00 р.</div>
+                </md-list-item>
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text">
+                        <h3>Печать листовая</h3>
+                        <p>
+                            Блок (Л+О), Обложка (Л)
+                        </p>
+                    </div>
+                    <div class="md-secondary">923.00 р.</div>
+                </md-list-item>
+
+            </div>
+
+            <md-divider></md-divider>
+            <md-list-item class="mn-button-toggle" ng-click="toggles.calculationBlock2 = !toggles.calculationBlock2">
+                <div  class="md-list-item-text">
+                    <h3>Бумага  <span aria-hidden="true" class="md-toggle-icon">
+                    <md-icon ng-class="{toggled: toggles.calculationBlock2}">keyboard_arrow_down</md-icon>
+                </span></h3>
+                </div>
+                <div class="md-secondary">6800.07 р.</div>
+            </md-list-item>
+            <div ng-show="toggles.calculationBlock2">
+                <md-divider></md-divider>
+                <md-list-item class="md-2-line">
+                    <div  class="md-list-item-text">
+                        <h3>Мелованная глянцевая (150 г/м)</h3>
+                        <p>
+                           Обложка
+                        </p>
+                    </div>
+                    <div class="md-secondary">923.00 р.</div>
+                </md-list-item>
+                <md-list-item class="md-2-line">
+                    <div  class="md-list-item-text">
+                        <h3>Оффсетная</h3>
+                        <p>
+                            Блок
+                        </p>
+                    </div>
+                    <div class="md-secondary">923.00 р.</div>
+                </md-list-item>
+
+
+            </div>
+        </div>
+
+
+        <p>Минимальный тираж - 100 шт. Максимальная красочность обложки - 4+4, максимальная красочность блока -  2+2. Количество
+            полос блока должно быть кратно 16-ти. Возможны различные варианты лакирования обложки. Готовые брошюры могут быть
+            упакованы в пленку (количество изделий в упаковке от 20 до 150)</p>
+
+        <form name="orderForm">
+        <div class=" param-block">
+
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    Параметры заказа
+                </div>
+            </md-toolbar>
+
+            <div class="param-frame md-whiteframe-z1">
+
+                <div flex layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm >
+                        <label>Тираж</label>
+                        <input ng-model="order.amount"  md-maxlength="8" required name="orderAmount" ng-pattern="/^\d+$/" >
+                        <div ng-messages="orderForm.orderAmount.$error">
+                            <div ng-message='required'>Тираж - обязательное поле.</div>
+                            <div ng-message='md-maxlength'>Тираж должен быть не длиннее 8 символов.</div>
+                            <div ng-message='pattern'>Тираж должен содержать только цифры.</div>
+                        </div>
+                        <md-icon class="mn-info">info
+                            <md-tooltip md-direction="left">
+                                Длинный текст с комментарием Очень и очень интересный
+                            </md-tooltip>
+                        </md-icon>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+
+                        <label>Срочность</label>
+                        <md-select name='orderUrgency' ng-model="order.urgency" required>
+                            <md-option ng-repeat="urgency in urgencies" value="{{urgency.name}}">
+                                {{urgency.name}}
+                            </md-option>
+                        </md-select>
+
+                        <div ng-messages="orderForm.orderUrgency.$error">
+                            <div ng-message='required'>Срочность - обязательное поле.</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-autocomplete
+                            md-no-cache="true"
+                            md-input-name="mySourceMaterials"
+                            md-floating-label="Исходные материалы"
+                            md-selected-item="myMaterial"
+                            md-search-text="mySearchText"
+                            md-items="source in sources"
+                            md-item-text="source.name"
+                            md-min-length="0">
+                        <md-item-template><span md-highlight-text="mySearchText">{{source.name}}</span></md-item-template>
+                    </md-autocomplete>
+                </div>
+
+            </div>
+
+
+            </div>
+
+            <div class=" param-block">
+
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        Детали и листы
+                    </div>
+                </md-toolbar>
+
+                <div class="param-frame md-whiteframe-z1">
+
+                    <div flex layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+
+                            <label>Формат обложки</label>
+                            <md-select name='coverFormat' ng-model="order.coverFormat" required>
+                                <md-option ng-repeat="coverFormat in coverFormats" value="{{coverFormat.name}}">
+                                    {{coverFormat.name}}
+                                </md-option>
+                            </md-select>
+
+                            <div ng-messages="orderForm.coverFormat.$error">
+                                <div ng-message='required'>Формат обложки - обязательное поле.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Красочность блока</label>
+                            <input ng-model="order.beautifulness"  md-maxlength="8"  ng-pattern="/\d+[xXхХ]\d+/" name="beautifulness"  >
+
+                            <div ng-messages="orderForm.beautifulness.$error">
+                                <div ng-message='md-maxlength'>Красочность блока не должна быть не длиннее 8 символов.</div>
+                                <div ng-message="pattern">Красочность должна состоять из двух цифр через "x" например 4x4</div>
+                            </div>
+
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Красочность обложки</label>
+                            <input ng-model="order.beautifulness1"  md-maxlength="8"  ng-pattern="/\d+[xXхХ]\d+/" name="beautifulness1"  >
+
+                            <div ng-messages="orderForm.beautifulness1.$error">
+                                <div ng-message='md-maxlength'>Красочность обложки не должна быть длиннее 8 символов.</div>
+                                <div ng-message="pattern">Красочность должна состоять из двух цифр через "x" например 4x4</div>
+                            </div>
+                        </md-input-container>
+</div>
+                        <div flex layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Количество полос блока</label>
+                            <input ng-model="order.beautifulness2"  md-maxlength="8"  name="beautifulness2"  >
+
+                            <div ng-messages="orderForm.beautifulness2.$error">
+                                <div ng-message='md-maxlength'>Количество полос блока не должна быть не длиннее 8 символов.</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Брошюра-блок</label>
+                            <input ng-model="order.beautifulness3"  md-maxlength="8"  name="beautifulness3"  >
+
+                            <div ng-messages="orderForm.beautifulness3.$error">
+                                <div ng-message='md-maxlength'>Брошюра-блок не должна быть не длиннее 8 символов.</div>
+                            </div>
+                        </md-input-container>
+
+
+
+                         </div>
+
+                    <div flex layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Пример Даты</label>
+                            <md-datepicker  ng-model="order.happinesDay"></md-datepicker>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Пример Числа</label>
+                           <input name="numSample" ng-model="order.numSample" type="number">
+
+                            <div ng-messages="orderForm.numSample.$error" ng-hide="showHints">
+                                <div ng-message="number">В поле должен быть число</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Пример телефона</label>
+                            <input type="tel" name="phoneSample" ng-model="order.phoneSample" ng-pattern="/^[(][0-9]{3}[)][0-9]{3}-[0-9]{4}$/" />
+
+                            <div ng-messages="orderForm.phoneSample.$error" ng-hide="showHints">
+                                <div ng-message="pattern">Телефон по шаблону: (###)###-####</div>
+                            </div>
+                        </md-input-container>
+
+                    </div>
+
+                    <div flex layout-align-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Пример Email</label>
+                            <input name="emailSample" ng-model="order.emailSample"
+                                    minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+
+                            <div ng-messages="orderForm.emailSample.$error" >
+                                <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
+                                    Email должен быть длинной от 10 до 100 символов и выглядеть как email.
+                                </div>
+                            </div>
+                        </md-input-container>
+
+
+                        <md-autocomplete
+                                md-no-cache="true"
+                                md-input-name="autocomplete"
+                                md-selected-item="selectedItem"
+                                md-search-text="searchText"
+                                md-items="item in createFilterFor(searchText)"
+                                md-item-text="item.short"
+                                placeholder="Пример поля формат"
+                                md-min-length="0"
+                                ng-pattern="/\d+[xXхХ]\d+/"
+                               >
+                            <md-item-template>
+                                <span md-highlight-text="searchText">{{item.display}}</span>
+                            </md-item-template>
+
+
+                        </md-autocomplete>
+                        <div ng-messages="orderForm.autocomplete.$error">
+                            <div ng-message='pattern' class="error-message">Пример формата должен соотвествовать шаблону 2323x3232</div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <br><br>
+                <div flex layout="row" layout-align="center center">
+                    <md-button class="md-raised md-primary" ng-click="calculate()">Рассчитать</md-button>
+                </div>
+                <br hide-gt-xs>
+                <br hide-gt-xs>
+                <br hide-gt-xs>
+
+            </div>
+
+
+        </form>
+
+        <br><br>
+
+    </md-content>
+</div>

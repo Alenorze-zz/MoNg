@@ -1,0 +1,346 @@
+$font-path: 'fonts/material/';
+$light-gray-bg: #f6f6f6;
+$dark-text: #202020;
+$icon-button: rgba(0, 0, 0, 0.87);
+$my-warn: rgba(255,64,129,0.87);
+$error-text-color: red;
+
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url($font-path + 'MaterialIcons-Regular.eot'); /* For IE6-8 */
+  src: local('Material Icons'),
+  local('MaterialIcons-Regular'),
+  url($font-path + 'MaterialIcons-Regular.woff2') format('woff2'),
+  url($font-path + 'MaterialIcons-Regular.woff') format('woff'),
+  url($font-path + 'MaterialIcons-Regular.ttf') format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons', Helvetica, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+
+@media (max-width: 500px) {
+  md-dialog {
+    max-width: 95%;
+  }
+}
+
+
+
+.user-name {
+  display: inline-block;
+  padding-right: 20px;
+}
+
+/* Main Menu */
+.main-menu-logo {
+  margin-bottom: 20px;
+  width: 320px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
+}
+
+
+.main-menu {
+
+  .menu-padding-left {
+    overflow: auto;
+
+    .menu-products {
+      overflow: hidden;
+      height: 114px;
+      transition: height ease-in-out 0.3s;
+    }
+
+    .menu-products.ng-hide {
+      height: 0 !important;
+      transition: height ease-in-out 0.3s !important;
+    }
+
+    md-icon {
+      position: absolute;
+      right: 10px;
+      top: 18px;
+
+      transition: all ease-in-out 0.3s;
+    }
+
+
+    .menu-item-text {
+      padding-left: 10px;
+    }
+
+    .menuOpened {
+      -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      -webkit-transform: rotate(180deg);
+      -o-transform: rotate(180deg);
+      transform: rotate(180deg);
+      transition: all 0.5s;
+    }
+
+
+    md-list {
+      padding: 0;
+
+      md-list-item {
+        padding: 0;
+      }
+
+
+    }
+
+
+    .md-button {
+      width: 100%;
+      text-align: left;
+      margin: 0;
+      padding: 10px 20px 10px 20px;
+      text-transform: none;
+      font-size: 16px;
+    }
+  }
+
+}
+
+
+.divider-margin-bottom {
+  margin-bottom: 20px;
+
+}
+
+.md-autocomplete-suggestions-container li .highlight {
+  color: red;
+}
+
+.error-message {
+
+    font-size: 12px;
+    line-height: 14px;
+    overflow: hidden;
+    -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    opacity: 1;
+    margin-top: 0;
+    padding-top: 5px;
+    color: red;
+}
+
+
+.content-view {
+
+  @media (max-width: 768px) {
+    .md-toolbar-tools {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .md-toolbar-tools {
+      font-size: 14px;
+    }
+  }
+
+  .content-toolbar {
+    background-color: $light-gray-bg;
+    color: $dark-text;
+
+    .button-move-left {
+      position: relative;
+      right: 10px;
+
+    }
+  }
+
+
+
+  .calculated-price {
+    display: inline-block;
+  }
+
+  .calculated-price-details {
+
+    margin-top: 10px;
+    md-list-item {
+
+    }
+  }
+
+  .content-blocks {
+    padding: 20px;
+
+    .param-block {
+      margin-bottom: 40px;
+    }
+  }
+  .param-frame {
+    padding: 20px;
+
+    .ctrl-padding {
+      padding: 0 10px;
+    }
+  }
+
+  .md-button {
+
+  }
+
+}
+
+.central-form-wrap{
+
+  height: 80vh;
+  overflow: scroll;
+
+  .central-form {
+    position: absolute;
+    top:20px;
+    width:300px;
+
+  }
+}
+
+.md-icon-button {
+  .fa {
+    position: relative;
+    top: 2px;
+  }
+
+  .fa:before {
+    font-size: 22px;
+  }
+}
+
+.orders-filter-dialog {
+  width: 600px;
+
+  md-dialog-content {
+    padding: 20px;
+
+    .filter-date-label{
+      display: inline-block;
+      position: relative;
+      top: 4px;
+      font-size: 18px;
+    }
+  }
+}
+
+.text-warn {
+  color: $my-warn;
+}
+
+.personal-order {
+  .files-block {
+    .order-item {
+        .fa {
+          color: $icon-button;
+        }
+    }
+  }
+}
+
+.md-button-toggle .md-toggle-icon .toggled {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+/*
+.calculated-price-details {
+
+    -webkit-transition: all 0.45s cubic-bezier(0.35, 0, 0.25, 1);
+    transition: all 0.45s cubic-bezier(0.35, 0, 0.25, 1);
+    height: 450px;
+    overflow: hidden;
+}
+.calculated-price-details.ng-hide {
+   min-height: 0;
+   height: 0;
+}*/
+
+.mn-button-toggle .toggled {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.error-block {
+  li {
+    color: $error-text-color;
+  }
+}
+
+.send-order-auth {
+  width: 320px;
+}
+
+.order-success {
+  display: inline-block;
+  width: 320px;
+}
+
+.fullscreen {
+  width: 100%;
+  height: 80vh;
+}
+
+.quadro-icon-button {
+  min-width: 40px;
+}
+
+.loading-control {
+
+}
+
+.mn-info {
+    right:15px !important;
+    color: $my-warn !important;
+}
+
+.mn-info-autocomplete {
+    position: relative;
+    left: -4px;
+    top: 24px;
+}
+
+.loading-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
+
+}
+
+/** for pages that don't load angular but have angular templates in them. **/
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}

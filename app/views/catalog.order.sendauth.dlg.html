@@ -1,0 +1,33 @@
+<md-dialog class="send-order-auth">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Отправка заказа</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancelOrder()">
+                    <md-icon md-font-icon aria-label="Close dialog">clear</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+
+        <div class="md-padding">
+            <md-input-container class="md-block">
+                <label>Комментарии</label>
+                <textarea ng-model="myOrder.note" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+            </md-input-container>
+
+        </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+
+            <span flex></span>
+            <md-button class="md-raised md-warn"  ng-click="doAuthOrder()">
+                Отправить заказ
+            </md-button>
+
+        </md-dialog-actions>
+    </form>
+</md-dialog>

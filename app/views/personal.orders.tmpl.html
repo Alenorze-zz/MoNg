@@ -1,0 +1,15 @@
+<div class="content-view">
+    <md-toolbar class="md-whiteframe-z2 content-toolbar">
+        <div class="md-toolbar-tools"> Заказы
+            <div ng-if="getDateFromState()"> &nbsp;c: {{getDateFrom()}}</div>
+            <div ng-if="getDateToState()"> &nbsp;по: {{getDateTo()}}</div>
+            <div flex></div>
+            <md-button class="md-icon-button" aria-label="Orders Filter" ng-click="clickOrdersFilter($event)">
+                <md-tooltip md-direction="left" >Фильтр заказов</md-tooltip>
+                <div class="fa fa-filter" ng-class="getFilterState()?'text-warn':''" ></div>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+<mn-orders-list></mn-orders-list>
+</div>

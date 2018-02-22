@@ -1,0 +1,56 @@
+<md-dialog class="orders-filter-dialog" aria-label="Фильтр Заказов">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Фильтр заказов</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-font-icon aria-label="Close dialog">clear</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+
+            <h4>Диапазон дат</h4>
+            <div layout-gt-xs="row">
+
+                <div flex-gt-xs>
+                    <span class="filter-date-label">С: </span> <md-datepicker ng-model="filterData.dateFrom" md-placeholder="Дата C"></md-datepicker>
+                </div>
+
+                <div flex-gt-xs>
+                    <span class="filter-date-label" >По: </span> <md-datepicker ng-model="filterData.dateTo" md-placeholder="Дата ПО"></md-datepicker>
+                </div>
+            </div>
+
+            <h4>Статус заказа</h4>
+            <div layout-gt-xs="row">
+                <md-checkbox ng-model="filterData.requests" aria-label="Checkbox 1">
+                    Заявки
+                </md-checkbox>
+
+                <md-checkbox ng-model="filterData.orders" aria-label="Checkbox 1">
+                    Заказы
+                </md-checkbox>
+
+                <md-checkbox ng-model="filterData.closed" aria-label="Checkbox 1">
+                    Закрытые
+                </md-checkbox>
+
+            </div>
+
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button ng-click="unsetFilter()" ng-if="isFilterSet()">
+                Снять фильтр
+            </md-button>
+            <span flex></span>
+            <md-button ng-click="setFilter()">
+               Применить фильтр
+            </md-button>
+
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -1,0 +1,43 @@
+<div ng-controller="MainMenuController">
+<a ng-click="onClickMenu('catalog.home')"><img src="img/logo-menu.png" class="main-menu-logo md-whiteframe-z2"></a>
+
+<md-content class="main-menu" flex mn-fix-height="180">
+
+
+<div class="menu-padding-left">
+
+
+    <md-button class="menu-category" ng-click="clickCategory(0)" ng-show="popular.length > 0">
+        <div class="md-title" >Популярные
+            <md-icon class="material-icons" ng-class="{menuOpened: ifGroupCollapse(0)}">keyboard_arrow_down</md-icon>
+        </div>
+    </md-button>
+
+    <md-list id="popularMenu" class="menu-products" ng-show="ifGroupCollapse(0)">
+        <md-list-item ng-repeat="item in popular"  class="md-subhead">
+            <md-button ng-click="onClickMenu(item.id)"> <div class="menu-item-text">{{item.name}}</div></md-button>
+        </md-list-item>
+    </md-list>
+
+    <md-divider></md-divider>
+
+    <div ng-repeat="category in catalog">
+    <md-button class="menu-category" ng-click="clickCategory(category.id+1)">
+        <div class="md-title" >{{category.name}}
+            <md-icon class="material-icons" ng-class="{menuOpened: ifGroupCollapse(category.id+1)}">keyboard_arrow_down</md-icon>
+        </div>
+    </md-button>
+
+    <md-list  class="menu-products" ng-show="ifGroupCollapse(category.id+1)" style="height: {{category.templates.length * menuCategoryHeight}}px;">
+        <md-list-item class="md-subhead" ng-repeat="item in category.templates" >
+            <md-button ng-click="onClickMenu(item.id)"> <div class="menu-item-text">{{item.name}}</div></md-button>
+        </md-list-item>
+
+ </md-list>
+<md-divider></md-divider>
+    </div>
+
+
+</div>
+</md-content>
+</div>

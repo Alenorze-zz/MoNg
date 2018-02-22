@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Моноритм</title>
+    <!-- build:css style.css -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="libs/angular-material/angular-material.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-busy/4.1.4/angular-busy.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.css" />
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+</head>
+
+<body ng-app="Monorythm" ng-cloak="" layout="column" ng-controller="AppController" style="overflow-y: hidden;overflow: hidden">
+<!-- <monorythm></monorythm> -->
+
+
+<div ui-view flex style="overflow-y: hidden;overflow: hidden"></div>
+<script src="config.js"></script>
+<!-- build:libs js/lib.js -->
+<script src="libs/angular/angular.js"></script>
+<script src="libs/angular-messages/angular-messages.js"></script>
+<script src="libs/angular-animate/angular-animate.js"></script>
+<script src="libs/angular-busy/dist/angular-busy.min.js"></script>
+<script src="libs/angular-aria/angular-aria.js"></script>
+<script src="libs/angular-material/angular-material.js"></script>
+<script src="libs/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="libs/angular-cookies/angular-cookies.min.js"></script>
+<script src="libs/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="libs/jquery/dist/jquery.js"></script>
+<script src="libs/jwt-decode/build/jwt-decode.min.js"></script>
+<script src="libs/moment/min/moment.min.js"></script>
+<!-- endbuild -->
+
+<script>
+    angular
+            .module('Monorythm', ['ngMaterial','ngSanitize','ngMessages','ui.router','ngAnimate','cgBusy','ngCookies'])
+            .run(function($log) {
+                $log.debug("Monorytm + ngMaterial running...")
+
+            });
+</script>
+
+
+<!-- build:appcomponents js/appcomponents.js -->
+<!-- <script src="scripts/Auth.js"></script> -->
+
+<!-- <script src="scripts/directives/OrderTemplateMessage.js"></script> -->
+
+<!-- <script src="scripts/directives/OrderOperations.js"></script>  -->
+
+<!-- <script src="scripts/directives/FormatQuestion.js"></script> -->
+
+<!-- <script src="scripts/directives/SignupFields.js"></script> -->
+<!-- <script src="scripts/directives/OrdersList.js"></script>
+<script src="scripts/directives/OrdersDetails.js"></script>
+<script src="scripts/directives/OrdersPayments.js"></script>  -->
+
+<!-- <script src="scripts/controllers/LoginController.js"></script> -->
+<!-- <script src="scripts/controllers/MainMenuController.js"></script> -->
+<!-- <script src="scripts/controllers/OrderController.js"></script> -->
+
+ <!-- <script src="scripts/controllers/OrdersListController.js"></script>
+<script src="scripts/controllers/OrdersFilterController.js"></script>  -->
+<!-- <script src="scripts/controllers/PersonalMenuController.js"></script>
+<script src="scripts/controllers/OrderDetailController.js"></script>
+<script src="scripts/controllers/PaymentsController.js"></script>
+<script src="scripts/controllers/PaymentsFilterController.js"></script>
+<script src="scripts/controllers/OrdersAddFileController.js"></script> -->
+<!-- <script src="scripts/controllers/SignupController.js"></script> -->
+
+<!-- <script src="scripts/controllers/OrderSuccessController.js"></script> -->
+<!-- <script src="scripts/services/SignupService.js"></script> -->
+<!-- <script src="scripts/services/PaymentsService.js"></script> -->
+<script src="scripts/AppConfig.js"></script>
+<script src="scripts/directives/FixHeightDirective.js"></script>
+<script src="scripts/directives/ProductFormDirective.js"></script>
+<script src="scripts/directives/OrderParams.js"></script> 
+<script src="scripts/directives/OrderDetailSheets.js"></script>
+<script src="scripts/directives/OrderPaper.js"></script>
+<script src="scripts/directives/OrderQuestionary.js"></script>
+<script src="scripts/directives/ListClosed.js"></script>
+<script src="scripts/directives/ListPaper.js"></script>
+<script src="scripts/directives/ListOpened.js"></script>
+<script src="scripts/directives/InputNumber.js"></script>
+<script src="scripts/directives/InputText.js"></script>
+<script src="scripts/directives/InputDate.js"></script>
+<script src="scripts/directives/InputTel.js"></script>
+<script src="scripts/directives/InputEmail.js"></script>
+<script src="scripts/directives/InputColor.js"></script>
+<script src="scripts/directives/Checkbox.js"></script>
+<script src="scripts/controllers/AppController.js"></script>
+<script src="scripts/controllers/CatalogController.js"></script>
+<script src="scripts/controllers/TemplateController.js"></script>
+<script src="scripts/services/AppStateService.js"></script>
+<script src="scripts/services/Products.js"></script>
+<script src="scripts/services/ValidProductService.js"></script>
+<script src="scripts/services/AuthService.js"></script>
+<!-- <script src="scripts/services/OrdersService.js"></script>  -->
+
+<script src="scripts/services/SettingService.js"></script>
+<!-- endbuild -->
+
+</body>
+</html>

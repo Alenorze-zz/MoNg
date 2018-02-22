@@ -1,0 +1,33 @@
+<md-dialog class="orders-filter-dialog" aria-label="Фильтр Заказов" >
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 ng-show="isAdd()">Добавить файл</h2><h2 ng-show="!isAdd()">Изменить файл</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-font-icon aria-label="Close dialog">clear</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+
+            <lf-ng-md-file-input lf-files='files' ng-show="isAdd()"> </lf-ng-md-file-input>
+            <br>
+            <md-input-container class="md-block">
+                <label>Комментарии</label>
+                <textarea ng-model="comment" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+            </md-input-container>
+
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+
+            <span flex></span>
+            <md-button ng-click="addFile()">
+                <span ng-show="isAdd()">Добавить</span><span ng-show="!isAdd()">Изменить</span>
+            </md-button>
+
+        </md-dialog-actions>
+    </form>
+</md-dialog>
